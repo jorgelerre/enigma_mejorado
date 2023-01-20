@@ -122,7 +122,6 @@ instance TypesWithNormalization (RotorGS) where
 
 
 -- Tipo que aglutina el reflector y los cuatros rotores (en efecto, toda la circuiteria)
--- rotores.
 data RotorSet =  RotorSet Reflector RotorGS RotorGS RotorGS RotorGS deriving Show
 --Metodos get
 extractRefRotorSet :: RotorSet -> Reflector
@@ -165,10 +164,10 @@ resetGrundstellung (RotorSet r r4 r3 r2 r1) (GS c4 c3 c2 c1) = norm(RotorSet r r
         rgs4 = RotorGS (extractRotorFromRotorGS r4) c4
 
 -- Tipo de dato diccionario, con clave y valor tipo char
--- No te haces a la idea de la de tiempo que he tardado en darme cuenta de que esto se corresponde a
+-- No te haces una idea de la de tiempo que he tardado en darme cuenta de que esto se corresponde a
 -- la conmutacion de letras que se puede realizar en la maquina. Hubiera venido bien haber comentado
 -- un poco el codigo.
--- Pb = Plugboard
+-- Pb = PlugBoard
 type Pb = Map.Map Char Char
 
 createPbSetAux :: Int -> String -> Pb
@@ -198,5 +197,8 @@ equivalentChar c pb
             isinvalue = Map.member c ipb --Devuelve true si encuentra en el diccionario el valor como valor
             ipb = invertBijection pb     --Diccionario pb invirtiendo parejas clave <-> valor
             
-            
+-- Ejercicio 3 - Mejora del codigo de la maquina
+
+-- Introducimos los tipos de dato necesarios en foldable
+--instance Foldable RotorSet
 
